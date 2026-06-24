@@ -1,12 +1,18 @@
-import ICommand from "./command";
-import Pessoa from "./pessoa";
+import type ICommand from "./command.ts";
+import Pessoa from "./pessoa.ts";
 
 export default class DeleteCommand implements ICommand {
-  constructor(public pessoas: Pessoa[]) {}
+  public pessoas: Pessoa[];
+
+  constructor(pessoas: Pessoa[]) {
+    this.pessoas = pessoas;
+  }
+
   async execute(...args: any[]): Promise<void> {
     const [id] = args;
-    const newPessoas = this.pessoas.filter(p => p.id !== id);
-    this.pessoas = newPessoas;
-  
+    const index = this.pessoas.findIndex(p => p.id === id);
+    if (index >= 0) {
+      this.pessoas.splice(index, 1);
+    }
   }
 }

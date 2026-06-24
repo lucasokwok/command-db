@@ -1,10 +1,14 @@
-import ICommand from "./command";
-import Pessoa from "./pessoa";
+import type ICommand from "./command.ts";
+import type Pessoa from "./pessoa.ts";
 
 export default class AllCommand implements ICommand {
-constructor(public pessoas: Pessoa[]) {}    
-  async execute(...args: any[]): Promise<void> {
+  public pessoas: Pessoa[];
 
+  constructor(pessoas: Pessoa[]) {
+    this.pessoas = pessoas;
+  }
+
+  async execute(...args: any[]): Promise<void> {
     console.log(`Pessoas:`, this.pessoas);
-}
+  }
 }

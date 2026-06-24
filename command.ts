@@ -1,4 +1,4 @@
-import Pessoa from "./pessoa";
+import type Pessoa from "./pessoa.ts";
 
 export default interface ICommand {
   pessoas: Pessoa[];

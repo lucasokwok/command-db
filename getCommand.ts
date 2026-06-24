@@ -1,8 +1,13 @@
-import ICommand from "./command";
-import Pessoa from "./pessoa";
+import type ICommand from "./command.ts";
+import Pessoa from "./pessoa.ts";
 
 export default class GetCommand implements ICommand {
-  constructor(public pessoas: Pessoa[]) {}
+  public pessoas: Pessoa[];
+
+  constructor(pessoas: Pessoa[]) {
+    this.pessoas = pessoas;
+  }
+
   async execute(...args: any[]): Promise<void> {
     const [id] = args;
     const pessoa = this.pessoas.find(p => p.id === id);
